@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace WinFormSQLearn
 {
@@ -15,21 +16,66 @@ namespace WinFormSQLearn
         public LoginForm()
         {
             InitializeComponent();
+
+            this.fieldPassword.AutoSize = false;
+            this.fieldPassword.Height = this.fieldLogIn.Height;     //высота поля пароля = высота поля логина
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void ButtonCloseWindow_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+                //Работа с крестиком закрытия формы
+        private void ButtonCloseWindow_MouseEnter(object sender, EventArgs e)
         {
-
+            ButtonCloseWindow.ForeColor = Color.DarkCyan;            
+            //ButtonCloseWindow.ForeColor = DefaultBackColor;
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void ButtonCloseWindow_MouseLeave(object sender, EventArgs e)
         {
-
+            ButtonCloseWindow.ForeColor = DefaultBackColor;
         }
+
+
+        // Цеплялка серой формы
+        Point lastPoint;//  Координаты курсора 
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) 
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+
+
+        // Цеплялка шапки формы
+        private void labelHead_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void labelHead_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+
+
+
+        //
+
     }
 }
