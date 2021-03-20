@@ -72,6 +72,17 @@ namespace WinFormSQLearn
             lastPoint = new Point(e.X, e.Y);
         }
 
+        private void buttonEnter_Click(object sender, EventArgs e)
+        {
+            //Введенные данные сравниваем, подключ к базе с таблицей и при соответствии авторизует
+            string loginUser = fieldLogIn.Text;
+            String passworUser = fieldPassword.Text;
+
+            DataBase dataBase = new DataBase();
+
+            DataTable table = new DataTable();
+        }
+
 
 
 

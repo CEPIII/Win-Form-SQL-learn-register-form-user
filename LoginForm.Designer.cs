@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonEnter = new System.Windows.Forms.Button();
             this.fieldPassword = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.fieldLogIn = new System.Windows.Forms.TextBox();
@@ -46,7 +46,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(145)))), ((int)(((byte)(145)))));
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonEnter);
             this.panel1.Controls.Add(this.fieldPassword);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.fieldLogIn);
@@ -60,15 +60,16 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
-            // button1
+            // buttonEnter
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(199, 328);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(216, 60);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Войти";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEnter.Location = new System.Drawing.Point(199, 328);
+            this.buttonEnter.Name = "buttonEnter";
+            this.buttonEnter.Size = new System.Drawing.Size(216, 60);
+            this.buttonEnter.TabIndex = 5;
+            this.buttonEnter.Text = "Войти";
+            this.buttonEnter.UseVisualStyleBackColor = true;
+            this.buttonEnter.Click += new System.EventHandler(this.buttonEnter_Click);
             // 
             // fieldPassword
             // 
@@ -176,6 +177,6 @@
         private System.Windows.Forms.TextBox fieldPassword;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox fieldLogIn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonEnter;
     }
 }
