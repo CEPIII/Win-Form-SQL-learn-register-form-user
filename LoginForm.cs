@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace WinFormSQLearn
 {
@@ -76,11 +77,32 @@ namespace WinFormSQLearn
         {
             //Введенные данные сравниваем, подключ к базе с таблицей и при соответствии авторизует
             string loginUser = fieldLogIn.Text;
-            String passworUser = fieldPassword.Text;
+            String passwordUser = fieldPassword.Text;
 
             DataBase dataBase = new DataBase();
 
             DataTable table = new DataTable();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();  //Добавил using
+
+            //для выборки данных относительно введеных
+            MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `login` = @loginUser AND `password` = @passwordUser", dataBase.getConnection()); // @заглушки
+
+            //Меняю заглушки`Security`
+            command.Parameters.Add("@loginUser", MySqlDbType.VarChar).Value = loginUser;
+            command.Parameters.Add("@passwordUser", MySqlDbType.VarChar).Value = passwordUser;
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);// Из адаптера заполняю тейбл
+
+            if(table.Rows.Count > 0)
+            {
+                MessageBox.Show("Yes");
+                
+            } else
+            {
+                MessageBox.Show("No");
+            }
         }
 
 
