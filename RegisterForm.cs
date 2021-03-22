@@ -15,6 +15,11 @@ namespace WinFormSQLearn
         public RegisterForm()
         {
             InitializeComponent();
+
+            fieldUserName.Text = "Введите имя";
+            fieldUserName.ForeColor = Color.Gray;
+            fieldUserSurname.Text = "Введите фамилию";
+            fieldUserSurname.ForeColor = Color.Gray;
         }
 
         private void ButtonCloseWindow_Click(object sender, EventArgs e)
@@ -32,5 +37,78 @@ namespace WinFormSQLearn
         {
             ButtonCloseWindow.ForeColor = DefaultBackColor;
         }
+
+
+/// <summary>
+/// Цеплялка шапки формы
+/// </summary>
+        Point lastPoint;//  Координаты курсора 
+        private void labelHeadRegister_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void labelHeadRegister_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void panelRegisterGray_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void panelRegisterGray_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void fieldUserName_Enter(object sender, EventArgs e)
+        {
+            if (fieldUserName.Text == "Введите имя")
+            {
+                fieldUserName.Text = "";
+                fieldUserName.ForeColor = Color.Black;
+            }
+
+        }
+
+        private void fieldUserName_Leave(object sender, EventArgs e)
+        {
+            if (fieldUserName.Text == "")
+            {
+                fieldUserName.Text = "Введите имя";
+                fieldUserName.ForeColor = Color.Gray;
+
+            }
+        }
+
+        private void fieldUserSurname_Enter(object sender, EventArgs e)
+        {
+            if (fieldUserSurname.Text == "Введите фамилию")
+            {
+                fieldUserSurname.Text = "";
+                fieldUserSurname.ForeColor = Color.Black;
+            }
+        }
+
+        private void fieldUserSurname_Leave(object sender, EventArgs e)
+        {
+            if (fieldUserSurname.Text == "")
+            {
+                fieldUserSurname.Text = "Введите фамилию";
+                fieldUserSurname.ForeColor = Color.Gray;
+
+            }
+        }
     }
 }
+
