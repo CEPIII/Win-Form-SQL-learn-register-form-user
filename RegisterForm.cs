@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,10 +17,17 @@ namespace WinFormSQLearn
         {
             InitializeComponent();
 
+            this.fieldPassword.AutoSize = false;
+            this.fieldPassword.Height = this.fieldLogIn.Height;     //высота поля пароля = высота поля
+
             fieldUserName.Text = "Введите имя";
             fieldUserName.ForeColor = Color.Gray;
             fieldUserSurname.Text = "Введите фамилию";
             fieldUserSurname.ForeColor = Color.Gray;
+            fieldLogIn.Text = "Введите логин";
+            fieldLogIn.ForeColor = Color.Gray;
+            //fieldPassword.Text = "Введите пароль";    //  из за "звездочек" надпись не видна
+            //fieldPassword.ForeColor = Color.Gray;
         }
 
         private void ButtonCloseWindow_Click(object sender, EventArgs e)
@@ -74,7 +82,11 @@ namespace WinFormSQLearn
         {
             lastPoint = new Point(e.X, e.Y);
         }
-
+        /// <summary>
+        /// Подсказка поля серый текст ЮзТейм
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fieldUserName_Enter(object sender, EventArgs e)
         {
             if (fieldUserName.Text == "Введите имя")
@@ -84,11 +96,7 @@ namespace WinFormSQLearn
             }
 
         }
-        /// <summary>
-        /// Подсказка поля серый текст
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void fieldUserName_Leave(object sender, EventArgs e)
         {
             if (fieldUserName.Text == "")
@@ -98,7 +106,11 @@ namespace WinFormSQLearn
 
             }
         }
-
+        /// <summary>
+        /// Подсказка поля серый текст ЮзСюрнейм
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fieldUserSurname_Enter(object sender, EventArgs e)
         {
             if (fieldUserSurname.Text == "Введите фамилию")
@@ -114,8 +126,42 @@ namespace WinFormSQLearn
             {
                 fieldUserSurname.Text = "Введите фамилию";
                 fieldUserSurname.ForeColor = Color.LightGray;
-
             }
+        }
+        /// <summary>
+        /// Подсказка логина
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void fieldLogIn_Enter(object sender, EventArgs e)
+        {
+            if (fieldLogIn.Text == "Введите логин")
+            {
+                fieldLogIn.Text = "";
+                fieldLogIn.ForeColor = Color.Black;
+            }
+        }
+
+        private void fieldLogIn_Leave(object sender, EventArgs e)
+        {
+            if (fieldLogIn.Text == "")
+            {
+                fieldLogIn.Text = "Введите логин";
+                fieldLogIn.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
+            DataBase dataBase = new DataBase();
+            MySqlCommand command = new MySqlCommand("INSERT INTO `users` (`login`, `password`, `name`, `surname`) VALUES (@login, @password, @name, @surname)");
+
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = fieldLogIn.Text;
+            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = fieldPassword.Text;
+            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = fieldUserName.Text;
+            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = fieldUserSurname.Text;
+
+
         }
     }
 }

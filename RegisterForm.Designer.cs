@@ -96,6 +96,7 @@
             this.buttonRegister.TabIndex = 5;
             this.buttonRegister.Text = "Зарегистрироваться";
             this.buttonRegister.UseVisualStyleBackColor = true;
+            this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
             // 
             // fieldPassword
             // 
@@ -124,6 +125,8 @@
             this.fieldLogIn.Name = "fieldLogIn";
             this.fieldLogIn.Size = new System.Drawing.Size(432, 64);
             this.fieldLogIn.TabIndex = 2;
+            this.fieldLogIn.Enter += new System.EventHandler(this.fieldLogIn_Enter);
+            this.fieldLogIn.Leave += new System.EventHandler(this.fieldLogIn_Leave);
             // 
             // pictureBox1
             // 
