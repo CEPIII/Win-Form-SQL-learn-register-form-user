@@ -39,9 +39,9 @@ namespace WinFormSQLearn
         }
 
 
-/// <summary>
-/// Цеплялка шапки формы
-/// </summary>
+        /// <summary>
+        /// Цеплялка шапки формы
+        /// </summary>
         Point lastPoint;//  Координаты курсора 
         private void labelHeadRegister_MouseMove(object sender, MouseEventArgs e)
         {
@@ -56,7 +56,11 @@ namespace WinFormSQLearn
         {
             lastPoint = new Point(e.X, e.Y);
         }
-
+        /// <summary>
+        /// Цеплялка  серой формы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panelRegisterGray_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -80,13 +84,17 @@ namespace WinFormSQLearn
             }
 
         }
-
+        /// <summary>
+        /// Подсказка поля серый текст
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fieldUserName_Leave(object sender, EventArgs e)
         {
             if (fieldUserName.Text == "")
             {
                 fieldUserName.Text = "Введите имя";
-                fieldUserName.ForeColor = Color.Gray;
+                fieldUserName.ForeColor = Color.LightGray;
 
             }
         }
@@ -105,7 +113,7 @@ namespace WinFormSQLearn
             if (fieldUserSurname.Text == "")
             {
                 fieldUserSurname.Text = "Введите фамилию";
-                fieldUserSurname.ForeColor = Color.Gray;
+                fieldUserSurname.ForeColor = Color.LightGray;
 
             }
         }
